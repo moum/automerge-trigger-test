@@ -9,6 +9,6 @@ jobs:
     steps:
       - run: |
           echo "event=${{ github.event_name }} actor=${{ github.actor }} triggering_actor=${{ github.triggering_actor }} sha=${{ github.sha }}"
-          echo "secret=${TEST_SECRET:-ABSENT}"
+          echo "secret_length=${#TEST_SECRET} (7=Actions secret, 15=Dependabot copy, 0=absent)"
         env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
