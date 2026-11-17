@@ -7,7 +7,7 @@ permissions:
   pull-requests: write
 jobs:
   automerge:
-    if: github.event.pull_request.user.login == 'dependabot[bot]' || contains(github.event.pull_request.labels.*.name, 'automerge-test')
+    if: contains(github.event.pull_request.labels.*.name, 'automerge-test')
     runs-on: ubuntu-latest
     steps:
       - run: gh pr merge --auto --merge "$PR_URL"

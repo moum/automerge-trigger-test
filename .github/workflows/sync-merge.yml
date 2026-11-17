@@ -8,7 +8,7 @@ permissions:
   actions: write
 jobs:
   merge:
-    if: contains(github.event.pull_request.labels.*.name, 'sync-merge-test')
+    if: github.event.pull_request.user.login == 'dependabot[bot]' || contains(github.event.pull_request.labels.*.name, 'sync-merge-test')
     runs-on: ubuntu-latest
     steps:
       - run: |
