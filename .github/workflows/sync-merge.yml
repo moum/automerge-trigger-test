@@ -1,0 +1,21 @@
+name: Sync merge + dispatch (fallback B2)
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+jobs:
+  merge:
+    if: contains(github.event.pull_request.labels.*.name, 'sync-merge-test')
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          sleep 20
+          gh pr checks "$PR_URL" --watch --required
+          gh pr merge --merge "$PR_URL"
+          gh workflow run on-push.yml --repo "$GITHUB_REPOSITORY" --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
