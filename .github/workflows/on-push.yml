@@ -7,4 +7,8 @@ jobs:
   semver:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "event=${{ github.event_name }} actor=${{ github.actor }} triggering_actor=${{ github.triggering_actor }} sha=${{ github.sha }}"
+      - run: |
+          echo "event=${{ github.event_name }} actor=${{ github.actor }} triggering_actor=${{ github.triggering_actor }} sha=${{ github.sha }}"
+          echo "secret=${TEST_SECRET:-ABSENT}"
+        env:
+          TEST_SECRET: ${{ secrets.TEST_SECRET }}
