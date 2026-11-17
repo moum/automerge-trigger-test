@@ -1,0 +1,10 @@
+name: On push to main (stands in for ci-semver)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  semver:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "event=${{ github.event_name }} actor=${{ github.actor }} triggering_actor=${{ github.triggering_actor }} sha=${{ github.sha }}"

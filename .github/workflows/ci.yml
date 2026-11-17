@@ -1,0 +1,8 @@
+name: CI
+on:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 90 && echo "build ok"

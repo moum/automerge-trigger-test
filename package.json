@@ -1,0 +1,9 @@
+{
+  "name": "automerge-trigger-test",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "is-number": "6.0.0",
+    "is-odd": "2.0.0"
+  }
+}
